@@ -6,10 +6,6 @@
 package Assignment3_db;
 import Assignment3_beans.Login_bean;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 /**
  *
