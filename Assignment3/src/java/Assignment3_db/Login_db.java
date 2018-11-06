@@ -5,7 +5,10 @@
  */
 package Assignment3_db;
 import Assignment3_beans.Login_bean;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  *
@@ -26,7 +29,7 @@ public class Login_db {
         //connect to the database
         String url="jdbc:derby://localhost:1527/Assignment3 [IS2560 on IS2560]"; 
         String uname="IS2560"; //database username
-        String pass=""; //database password
+        String pass="IS2560"; //database password
         
         try
         {
@@ -37,7 +40,7 @@ public class Login_db {
             //sent SQL query to the database
             PreparedStatement ps=null; //create statement
             //SQL for select the username and password
-            ps=con.prepareStatement("select * from user where username=? and password=?"); 
+            ps=con.prepareStatement("select * from users where username=? and password=?"); 
             ps.setString(1,username);
             ps.setString(2,password);
             //excute query

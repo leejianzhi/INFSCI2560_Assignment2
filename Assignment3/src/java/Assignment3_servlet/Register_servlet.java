@@ -8,7 +8,7 @@ import Assignment3_db.Register_db;
 import Assignment3_beans.Register_bean;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -30,11 +30,10 @@ public class Register_servlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         
-            
     {
         
         if(request.getParameter("btn_register")!=null) //check button click event not null from register.jsp page button
@@ -55,10 +54,10 @@ public class Register_servlet extends HttpServlet {
             
             String registerValidate=register_db.authorizeRegister(register_bean); //send registerBean object values into authorizeRegister() function in RegisterDao class
             
-            if(registerValidate.equals("SUCCESS REGISTER")) //check calling authorizeRegister() function receive "SUCCESS REGISTER" string message after redirect to index.jsp page
+            if(registerValidate.equals("SUCCESS")) //check calling authorizeRegister() function receive "SUCCESS REGISTER" string message after redirect to index.jsp page
             {
                 request.setAttribute("RegiseterSuccessMsg",registerValidate); //apply register successfully message "RegiseterSuccessMsg"
-                RequestDispatcher rd=request.getRequestDispatcher("index.jsp"); //redirect to index.jsp page
+                RequestDispatcher rd=request.getRequestDispatcher("/index.jsp"); //redirect to index.jsp page
                 rd.forward(request, response);
             }
             else

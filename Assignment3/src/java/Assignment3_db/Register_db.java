@@ -9,7 +9,7 @@ import Assignment3_beans.Register_bean;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+
 /**
  *
  * @author Jianzhi
@@ -25,33 +25,35 @@ public class Register_db {
         
         String url="jdbc:derby://localhost:1527/Assignment3 [IS2560 on IS2560]"; //database connection url string
         String uname="IS2560"; //database username
-        String pass=""; //database password
+        String pass="IS2560"; //database password
         
         try
         {
             Class.forName("com.mysql.jdbc.Driver"); //load driver
             Connection con=DriverManager.getConnection(url,uname,pass); //create connection
             
-            PreparedStatement pstmt=null; //create statement
+            PreparedStatement ps=null; //create statement
             
-            pstmt=con.prepareStatement("insert into user(firstname,lastname,username,password) values(?,?,?,?)"); //sql insert query
-            pstmt.setString(1,firstname);
-            pstmt.setString(2,lastname);
-            pstmt.setString(3,username);
-            pstmt.setString(4,password); 
-            pstmt.executeUpdate(); //execute query
+            String query= "insert into users(user_id, firstname, lastname, username, password) values(NULL,?,?,?,?)"; //sql insert query
+            ps = con.prepareStatement(query);
+            ps.setString(1,firstname);
+            ps.setString(2,lastname);
+            ps.setString(3,username);
+            ps.setString(4,password); 
+            ps.executeUpdate(); //execute query
              
-            pstmt.close(); //close statement
+            //ps.close(); //close statement
             
-            con.close(); //close connection
+            //con.close(); //close connection
+            
            
-            return "SUCCESS REGISTER"; //if valid return string "SUCCESS REGISTER" 
+            return "You are successfully registered on our site."; //if valid return string "SUCCESS REGISTER" 
         }
         catch(Exception e)
         {
             e.printStackTrace();
         }
-            return "FAIL REGISTER"; //if invalid return string "FAIL REGISTER"
+            return "There is something wrong with your registration, please try again."; //if invalid return string "FAIL REGISTER"
     }
 
 

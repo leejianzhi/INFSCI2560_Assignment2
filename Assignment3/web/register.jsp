@@ -1,9 +1,9 @@
-<%-- 
-    Document   : register
-    Created on : Nov 5, 2018, 12:04:13 PM
-    Author     : Jianzhi
---%>
-
+<%
+    if(session.getAttribute("login")!=null)
+    {
+        response.sendRedirect("index.jsp");
+    }
+%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@
            var fname = document.getElementById("fname"); //textbox id fname
            var lname = document.getElementById("lname"); //textbox id lname
            var uname = document.getElementById("uname"); //textbox id email
-           var password = document.getElementById("password"); //textbox id password
+           var pw = document.getElementById("pw"); //textbox id password
     
            if(!first_name.test(fname.value) || fname.value=='') //apply if condition using test() method match the parameter for pattern allow alphabet only
            {
@@ -49,7 +49,7 @@
               uname.style.background = '#f08080'; //set textbox color
               return false;                    
            }
-           if(!password_valid.test(password.value) || password.value=='') //apply if condition using test() method match the parameter for pattern passoword allow 6 to 12 range 
+           if(!password_valid.test(pw.value) || pw.value=='') //apply if condition using test() method match the parameter for pattern passoword allow 6 to 12 range 
            {
               alert("Password Must Be 6 to 12 character"); //alert message
               password.focus();
@@ -60,37 +60,31 @@
       </script>
     </head>
     <body>
-        
-     
-            <div class ="login-form">
-            <h2>Register</h2>
-            
+        <div class ="login-form">
             <form id="login-form"  method="post" action="Register_servlet" onsubmit="return validate();">
                 <h2 class="text-center">Register</h2>
-                
-                
                 <div class="form-group">
-                   <label for="Firstname" class="cols-sm control-label">Firstname:   </label>
-                   <input type="text" class="form-control" name="firstname_input" placeholder="Firstname">
+                   <label for="Firstname" class="cols-sm control-label">First name:   </label>
+                   <input id="fname" type="text" class="form-control" name="firstname_input" placeholder="Firstname">
                 </div>
                  <div class="form-group">
-                   <label for="Lastname" class="cols-sm control-label">Lastname:   </label>
-                   <input type="text" class="form-control" name="lastname_input" placeholder="Lastname">
+                   <label for="Lastname" class="cols-sm control-label">Last name:   </label>
+                   <input id="lname" type="text" class="form-control" name="lastname_input" placeholder="Lastname">
                 </div>
                  <div class="form-group">
                    <label for="Username" class="cols-sm control-label">Username:   </label>
-                   <input type="text" class="form-control" name="username_input" placeholder="Username">
+                   <input id="uname" type="text" class="form-control" name="username_input" placeholder="Username">
                 </div>
                  <div class="form-group">
                    <label for="Password" class="cols-sm control-label">Password:   </label>
-                   <input type="password" class="form-control" name="password_input" placeholder="Password">
+                   <input id="pw" type="password" class="form-control" name="password_input" placeholder="Password">
                 </div>
                 
                 <div class="text-center">
                 <input type="submit" name="btn_register" value="Register">
                 </div>
                 
-                <p class="text-center"><a href="register.jsp">Login</a></p>
+                <p class="text-center"><a href="index.jsp">Login</a></p>
                 
                 
             </form>
