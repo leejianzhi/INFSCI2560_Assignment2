@@ -4,11 +4,20 @@
  * and open the template in the editor.
  */
 package Assignment3_db;
+
+
 import Assignment3_beans.Login_bean;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.io.*;
+import java.net.*;
+import java.util.Date;
+import java.util.regex.*;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+
 
 /**
  *
@@ -27,25 +36,28 @@ public class Login_db {
         String dbusername="";  
         String dbpassword="";
         //connect to the database
-        String url="jdbc:derby://localhost:1527/Assignment3 [IS2560 on IS2560]"; 
-        String uname="IS2560"; //database username
-        String pass="IS2560"; //database password
+        String connectionURL = "jdbc:derby://localhost:1527/JianzhiLi"; 
         
         try
         {
-               //load driver
-            Class.forName("com.mysql.jdbc.Driver"); 
+           Class.forName("org.apache.derby.jdbc.ClientDriver");
+           // Class.forName("org.apache.derby.jdbc.ClientDriver");
+            Connection conn = DriverManager.getConnection(connectionURL, "IS2560", "IS2560");   
+            //load driver
+            //Class.forName("org.apache.derby.jdbc.ClientDriver"); 
             //create connection
-            Connection con=DriverManager.getConnection(url,uname,pass); 
+            
+           
             //sent SQL query to the database
             PreparedStatement ps=null; //create statement
             //SQL for select the username and password
-            ps=con.prepareStatement("select * from users where username=? and password=?"); 
+            String query = "SELECT * FROM IS2560.USERS WHERE username=? AND password=?";
+            ps=conn.prepareStatement(query); 
             ps.setString(1,username);
             ps.setString(2,password);
             //excute query
-            ResultSet rs=ps.executeQuery(); 
-             
+            ResultSet rs=ps.executeQuery(query); 
+            /*
             while(rs.next())
             {    
                 //fetch username and password from the variable we created above which is dbusername nad dbpassword
@@ -62,13 +74,21 @@ public class Login_db {
            //close prepared statement
             ps.close(); 
             //close connection
-            con.close(); 
-           
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
+            conn.close(); 
+
+          */
+             if (rs.next()) {
+                System.out.println("Correct login credentials");
+            } 
+            else {
+                System.out.println("Incorrect login credentials");
+            }
+            
+
+        
+        }  catch (Exception ex) {
+ System.out.println("Connect failed ! ");
+ }
         //if either or both the input of username or password is incorrect the meesage below will show up to the user
         return "Your username or password is incorrect, please try again.";
     }

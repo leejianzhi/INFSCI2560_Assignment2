@@ -9,7 +9,6 @@ import Assignment3_beans.Login_bean;
 import Assignment3_db.Login_db;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

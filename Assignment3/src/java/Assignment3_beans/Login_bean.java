@@ -7,11 +7,10 @@ package Assignment3_beans;
 
 /**
  *
- * @author Jianzhi
- * Source Code modified from http://met.guc.edu.eg/OnlineTutorials/JSP%20-%20Servlets/Full%20Login%20Example.aspx
+ * @author leedz
  */
 public class Login_bean {
-    
+   
     private String username,password;
     
     public String getUsername(){
@@ -26,5 +25,5 @@ public class Login_bean {
     public void setPassword(String password){
         this.password=password;
     }
-    
+
 }

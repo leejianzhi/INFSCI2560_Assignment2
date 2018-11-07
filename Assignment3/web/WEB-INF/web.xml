@@ -8,6 +8,14 @@
         <servlet-name>Login_servlet</servlet-name>
         <servlet-class>Assignment3_servlet.Login_servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Login_db</servlet-name>
+        <servlet-class>Assignment3_db.Login_db</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Register_db</servlet-name>
+        <servlet-class>Assignment3_db.Register_db</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Register_servlet</servlet-name>
         <url-pattern>/Register_servlet</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>Login_servlet</servlet-name>
         <url-pattern>/Login_servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Login_db</servlet-name>
+        <url-pattern>/Login_db</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Register_db</servlet-name>
+        <url-pattern>/Register_db</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

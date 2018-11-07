@@ -1,10 +1,4 @@
-<%
-    if(session.getAttribute("login")!=null)
-    {
-        response.sendRedirect("home.jsp"); 
-        //once the user sucessful login then redirect to the home page
-    }
-%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%> <!--Declare HTML in JSP tag-->
 <!DOCTYPE html>
 <html>
